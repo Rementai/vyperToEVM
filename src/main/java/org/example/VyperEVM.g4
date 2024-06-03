@@ -54,6 +54,7 @@ program : statement+;
 
 statement : simpleStatement
           | compoundStatement
+          | functionDefinition // added function definitions
           ;
 
 simpleStatement : expression SEMICOLON;
@@ -80,6 +81,12 @@ atomicExpression : NUMBER
                  | BOOL
                  | IDENTIFIER
                  ;
+
+functionDefinition : '@' IDENTIFIER parameters '->' IDENTIFIER ':' NEWLINE INDENT statement+ DEDENT;
+
+parameters : LPAREN (parameter (COMMA parameter)*)? RPAREN;
+
+parameter : IDENTIFIER ':' IDENTIFIER; // Assuming parameters are defined as identifier:type pairs
 
 AND : 'and';
 

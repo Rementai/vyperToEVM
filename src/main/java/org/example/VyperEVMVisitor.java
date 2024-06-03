@@ -1,4 +1,4 @@
-package org.example;// Generated from VyperEVM.g4 by ANTLR 4.13.1
+// Generated from VyperEVM.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -57,4 +57,22 @@ public interface VyperEVMVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAtomicExpression(VyperEVMParser.AtomicExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link VyperEVMParser#functionDefinition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionDefinition(VyperEVMParser.FunctionDefinitionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link VyperEVMParser#parameters}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameters(VyperEVMParser.ParametersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link VyperEVMParser#parameter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameter(VyperEVMParser.ParameterContext ctx);
 }
