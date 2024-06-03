@@ -49,26 +49,49 @@ MOD : '%';
 
 POW : '**';
 
+AND : 'and';
+
+OR : 'or';
+
+NOT : 'not';
+
+EQ : '==';
+
+NEQ : '!=';
+
+LTE : '<=';
+
+GTE : '>=';
+
+NEWLINE : '\r'? '\n';
+
+INDENT : [ \t]+;
+
+DEDENT : [ \t]* '\r'? '\n' -> popMode;
+
+ESC : '\\' .;
+
 // Parser rules
-program : statement+;
+program : statement+ EOF;
 
 statement : simpleStatement
           | compoundStatement
-          | functionDefinition // added function definitions
+          | functionDefinition
           ;
 
 simpleStatement : expression SEMICOLON;
 
 compoundStatement : ifStatement
                   | whileStatement
-                  // Add other compound statements as needed
                   ;
 
-ifStatement : 'if' expression ':' NEWLINE INDENT statement+ DEDENT ('else' ':' NEWLINE INDENT statement+ DEDENT)?;
+ifStatement : 'if' expression COLON NEWLINE INDENT statement+ DEDENT (elseStatement)?;
 
-whileStatement : 'while' expression ':' NEWLINE INDENT statement+ DEDENT;
+elseStatement : 'else' COLON NEWLINE INDENT statement+ DEDENT;
 
-expression : atomicExpression (PLUS atomicExpression | MINUS atomicExpression | MUL atomicExpression | DIV atomicExpression | MOD atomicExpression | POW atomicExpression)
+whileStatement : 'while' expression COLON NEWLINE INDENT statement+ DEDENT;
+
+expression : expression (PLUS | MINUS | MUL | DIV | MOD | POW | EQ | NEQ | LTE | GTE) expression
            | NOT expression
            | expression AND expression
            | expression OR expression
@@ -82,22 +105,8 @@ atomicExpression : NUMBER
                  | IDENTIFIER
                  ;
 
-functionDefinition : '@' IDENTIFIER parameters '->' IDENTIFIER ':' NEWLINE INDENT statement+ DEDENT;
+functionDefinition : '@' IDENTIFIER parameters '->' IDENTIFIER COLON NEWLINE INDENT statement+ DEDENT;
 
 parameters : LPAREN (parameter (COMMA parameter)*)? RPAREN;
 
-parameter : IDENTIFIER ':' IDENTIFIER; // Assuming parameters are defined as identifier:type pairs
-
-AND : 'and';
-
-OR : 'or';
-
-NOT : 'not';
-
-NEWLINE : '\r'? '\n';
-
-INDENT : '    ';
-
-DEDENT : [ \t]* '\r'? '\n';
-
-ESC : '\\' .;
+parameter : IDENTIFIER (COLON IDENTIFIER)?;

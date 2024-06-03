@@ -8,14 +8,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 public class Main {
     public static void main(String[] args) {
-        String code = """
-                      a: int128;
-                      b: int128;
-
-                      @external
-                      def add(a: int128, b: int128) -> int128:
-                          return a + b;
-                      """;
+        String code = "a: int128;";
 
         BytecodeGenerator bytecodeGenerator = new BytecodeGenerator();
         List<Byte> bytecode = bytecodeGenerator.generateBytecode(code);

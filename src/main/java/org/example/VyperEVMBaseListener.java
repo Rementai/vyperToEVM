@@ -1,4 +1,5 @@
 // Generated from VyperEVM.g4 by ANTLR 4.13.1
+package org.example;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -71,6 +72,18 @@ public class VyperEVMBaseListener implements VyperEVMListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIfStatement(VyperEVMParser.IfStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterElseStatement(VyperEVMParser.ElseStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElseStatement(VyperEVMParser.ElseStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

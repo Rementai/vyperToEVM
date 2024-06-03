@@ -1,4 +1,5 @@
 // Generated from VyperEVM.g4 by ANTLR 4.13.1
+package org.example;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -39,6 +40,12 @@ public interface VyperEVMVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIfStatement(VyperEVMParser.IfStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link VyperEVMParser#elseStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseStatement(VyperEVMParser.ElseStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link VyperEVMParser#whileStatement}.
 	 * @param ctx the parse tree
